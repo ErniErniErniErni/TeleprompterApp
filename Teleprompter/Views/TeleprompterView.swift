@@ -8,7 +8,27 @@
 import SwiftUI
 
 struct TeleprompterView: View {
+    @StateObject private var viewModel = TeleprompterViewModel()
+    @StateObject private var scroller = ScrollTimer()
+    
     var body: some View {
-        Text("hello from teleprompter")
+        ScrollViewReader { proxy in
+            ScrollView {
+                Text(viewModel.script.text)
+                    .font(.title2)
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(Color.black.opacity(0.5))
+                    .id("ScriptText")
+            }
+            .onReceive(scroller.$offset) { _ in
+                withAnimation(.linear(duration: 0.03)) {
+                    proxy.scrollTo("ScriptText", anchor: .top)
+                }
+            }
+            .onAppear {
+                scroller.startScrolling()
+            }
+        }
     }
 }
