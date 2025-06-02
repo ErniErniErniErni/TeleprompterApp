@@ -10,6 +10,7 @@ import SwiftUI
 struct TeleprompterView: View {
     
     // property wrapper. manage and observe data to make a struct mutable
+    // how SwiftUI tracks changes and automatically updates the user interface
     @StateObject private var viewModel = TeleprompterViewModel()
     @StateObject private var scroller = ScrollTimer()
     
