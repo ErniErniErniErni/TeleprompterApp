@@ -23,8 +23,9 @@ struct TeleprompterView: View {
             ScrollView {
                 Text(viewModel.script.text)
                     .font(.title2)
-                    .multilineTextAlignment(.center)
+                    .multilineTextAlignment(.leading)
                     .padding()
+                    .frame(width: 200, height: 300)
                     .id("teleprompterText")
             }
             .overlay(

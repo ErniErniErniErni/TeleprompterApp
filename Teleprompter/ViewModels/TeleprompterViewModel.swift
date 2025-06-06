@@ -12,4 +12,3 @@ class TeleprompterViewModel: ObservableObject {
     @Published var scrollSpeed: Double = 0.5
     @Published var script: ScriptModel = ScriptModel.loadSample()
 }
-
