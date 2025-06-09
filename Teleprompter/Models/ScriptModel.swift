@@ -9,16 +9,12 @@ import Foundation
 struct ScriptModel {
     var text: String
     
-    
-    
     static func loadSample() -> ScriptModel {
-        let sampleText: String = {
-            guard let url = Bundle.main.url(forResource: "SampleScript", withExtension: "txt"),
-                  let content = try? String(contentsOf: url, encoding: .utf8) else {
-                return "failed to read"
-            }
-            return content
-        }()
-        return ScriptModel(text: sampleText)
+        if let url = Bundle.main.url(forResource: "SampleScript", withExtension: "txt"),
+            let sampleText = try? String(contentsOf: url, encoding: .utf8) {
+            return ScriptModel(text: sampleText)
+        }else {
+            return ScriptModel(text:"failed to read")
+        }
     }
 }
