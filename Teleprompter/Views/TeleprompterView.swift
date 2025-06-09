@@ -31,47 +31,49 @@ struct TeleprompterView: View {
                         .background(Color.black.opacity(0.5))
                         .id("teleprompterText")
                 }
-                .onAppear {
-                    startScrolling(proxy: proxy)
-                }
-                .onDisappear {
-                    stopScrolling()
-                }
+//                .onAppear {
+//                    startScrolling(proxy: proxy)
+//                }
+//                .onDisappear {
+//                    stopScrolling()
+//                }
             }
             //Pause/Play & Speed controls
-            HStack {
-                Button(action: {
-                    isScrolling.toggle()
-                }) {
-                    Image(systemName: isScrolling ? "pause.circle.fill" : "play.circle.fill")
-                        .font(.largeTitle)
-                        .padding()
-                }
-
-                Slider(value: $scrollSpeed, in: 10...100, step: 5) {
-                    Text("Speed")
-                }
-                .padding()
-            }
+//            HStack {
+//                Button(action: {
+//                    isScrolling.toggle()
+//                }) {
+//                    Image(systemName: isScrolling ? "pause.circle.fill" : "play.circle.fill")
+//                        .font(.largeTitle)
+//                        .padding()
+//                }
+//
+//                Slider(value: $scrollSpeed, in: 10...100, step: 5) {
+//                    Text("Speed")
+//                }
+//                .padding()
+//            }
         }
     }
 
-    private func startScrolling(proxy: ScrollViewProxy) {
-        isScrolling = true
-        timer = Timer.scheduledTimer(withTimeInterval: 0.02, repeats: true) { _ in
-            if isScrolling {
-                withAnimation(.linear(duration: 0.02)) {
-                    scrollOffset += scrollSpeed * 0.02
-                    proxy.scrollTo("teleprompterText", anchor: .top)
-                }
-            }
-        }
-    }
-
-    private func stopScrolling() {
-        timer?.invalidate()
-        timer = nil
-    }
+//    private func startScrolling(proxy: ScrollViewProxy) {
+//        isScrolling = true
+//        timer = Timer.scheduledTimer(withTimeInterval: 0.02, repeats: true) { _ in
+//            if isScrolling {
+//                Task { @MainActor in
+//                    scrollOffset += scrollSpeed * 0.02
+//                    withAnimation(.linear(duration: 0.02)) {
+//                        proxy.scrollTo("teleprompterText", anchor: .top)
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//    private func stopScrolling() {
+//        timer?.invalidate()
+//        timer = nil
+//    }
     
 
 }
